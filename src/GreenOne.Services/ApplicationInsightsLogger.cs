@@ -14,7 +14,7 @@ namespace GreenOne.Services
 
         public void LogError(Exception ex)
         {
-            throw new NotImplementedException();
+            _client.TrackException(ex);
         }
     }
 }

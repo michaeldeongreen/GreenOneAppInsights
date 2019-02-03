@@ -21,6 +21,7 @@ namespace GreenOne.Web.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _loggers.FirstOrDefault().LogError(new Exception("I hate you!!!"));
             return new string[] { "value1", "value2" };
         }
 

@@ -20,7 +20,14 @@ namespace GreenOne.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, builder) => {
+                    var env = context.HostingEnvironment;
+                    builder
+                    .AddJsonFile("appsetttings.json", optional:true, reloadOnChange:true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional:true);
+                })
                 .UseLamar()
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseApplicationInsights();
     }
 }
